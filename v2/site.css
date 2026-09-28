@@ -472,3 +472,6 @@ body { background: #fff; }
 .flip__front { transform: rotateY(0deg) translateZ(1px); }
 .flip__back { transform: rotateY(180deg) translateZ(1px); }
 .flip__front, .flip__back { transition: visibility 0s linear .4s; }
+/* переход по ссылкам меню: блок встаёт под шапкой, а не под неё (шапка 8 + 68 px + воздух) */
+main section[id] { scroll-margin-top: 96px; }
+@media (max-width: 1100px) { main section[id] { scroll-margin-top: 84px; } }
