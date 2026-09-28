@@ -414,3 +414,13 @@ section { position: relative; }
 .lg-refract .hdr { -webkit-backdrop-filter: url(#lg-refract) blur(6px) saturate(1.9) brightness(1.06); backdrop-filter: url(#lg-refract) blur(6px) saturate(1.9) brightness(1.06); }
 .hdr__bot { background: rgba(255,255,255,.45); border-color: rgba(255,255,255,.7); }
 @media (prefers-reduced-transparency: reduce) { .hdr { background: rgba(255,255,255,.94); } }
+
+/* liquidGL: пока библиотека делает снимок страницы — все блоки видимы, без анимаций */
+.lg-snap [data-reveal] { opacity: 1 !important; translate: none !important; transition: none !important; }
+/* когда стекло включилось — убираем наш CSS-вариант, стекло рисует liquidGL */
+.lg-on .hdr { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.5); }
+.lg-on .hdr::before { display: none; }
+
+/* масштаб под ширину экрана: увеличиваем блоки, а не всю страницу (иначе съезжает стекло liquidGL) */
+main, .foot, .hdr { zoom: var(--z, 1); }

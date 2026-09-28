@@ -10,9 +10,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Unbounded:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="motion.css?v=8">
-<link rel="stylesheet" href="site.css?v=8">
-<script>(function(){var r=document.documentElement;function z(){var w=window.innerWidth;r.style.zoom=(w>=1100&&w!==1440)?Math.min(w/1440,1.6):'';}z();addEventListener('resize',z);})();document.documentElement.classList.add('m-js');if(location.search.indexOf('shot')>-1)document.documentElement.classList.add('shot')</script>
+<link rel="stylesheet" href="motion.css?v=12">
+<link rel="stylesheet" href="site.css?v=12">
+<script>(function(){var r=document.documentElement;function z(){var w=window.innerWidth;r.style.setProperty('--z',(w>=1100&&w!==1440)?Math.min(w/1440,1.6):1);}z();addEventListener('resize',z);})();document.documentElement.classList.add('m-js');if(location.search.indexOf('shot')>-1)document.documentElement.classList.add('shot')</script>
 <style>.shot *,.shot *::before{transition:none!important;animation:none!important} @media (max-width:700px){.br-d{display:none}} .scr, .fl { transform: rotate(var(--rot, 0deg)); } @media (max-width: 1100px) { .fl--inside { animation: none; } }</style>
 </head>
 <body>
@@ -379,6 +379,25 @@
 
 <div class="test-banner">Тестовая версия · не индексируется</div>
 
+<script src="vendor/liquidGL.js"></script>
+<script>
+  // жидкое стекло для шапки — liquidGL (MIT, github.com/naughtyduk/liquidGL)
+  (function(){
+    if (matchMedia('(prefers-reduced-transparency: reduce)').matches || typeof liquidGL !== 'function') return;
+    var r = document.documentElement;
+    r.classList.add('lg-snap');           // на время снимка страницы показываем все блоки
+    try {
+      liquidGL({
+        target: '.hdr', snapshot: 'body', resolution: 2,
+        refraction: 0.03, aberration: 0.35, bevelDepth: 0.22, bevelWidth: 0.32,
+        frost: 7, shadow: true, specular: true, reveal: 'fade',
+        tint: 'rgba(255,255,255,0.55)',
+        on: { init: function(){ r.classList.remove('lg-snap'); r.classList.add('lg-on'); } }
+      });
+    } catch (e) { r.classList.remove('lg-snap'); }
+    setTimeout(function(){ r.classList.remove('lg-snap'); }, 4000);
+  })();
+</script>
 <script src="motion.js"></script>
 <script>
   // отзывы: листание
