@@ -366,3 +366,36 @@ section { position: relative; }
   .foot { padding: 4px 12px 24px; } .foot__card { padding: 32px 24px 24px; border-radius: 28px; } .foot__top { grid-template-columns: 1fr; }
   .reviews__foot { flex-direction: column; align-items: flex-start; gap: 16px; }
 }
+
+/* 2 · карточки услуг с 3D-переворотом */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.flip { position: relative; height: 600px; perspective: 1600px; outline: none; }
+.flip__inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.3,1.25,.4,1), translate .45s var(--m-ease, ease); }
+.flip__face { position: absolute; inset: 0; border-radius: 16px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 10px 30px -18px rgba(33,33,41,.25); transition: box-shadow .5s ease; }
+.fc--a .flip__face { border-top-left-radius: 48px; } .fc--b .flip__face { border-top-right-radius: 48px; } .fc--c .flip__face { border-bottom-right-radius: 48px; }
+.flip__face > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.flip__front::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,.3); }
+.flip__back { transform: rotateY(180deg); }
+.flip__back::after { content: ''; position: absolute; inset: 0; background: rgba(160,37,56,.86); }
+.ft { position: absolute; z-index: 1; font-weight: 600; font-size: 68px; line-height: .96; letter-spacing: -.04em; color: var(--ink); }
+.ft--a { left: 24px; top: 308px; } .ft--b { left: 15px; top: 215px; font-size: 60px; } .ft--c { left: 26px; top: 22px; }
+.flip__back p { position: absolute; z-index: 1; left: 28px; right: 28px; top: 36px; font-weight: 300; font-size: 26px; line-height: 1.28; letter-spacing: -.02em; color: #F6DADF; }
+.flip__back b { font-weight: 600; color: #fff; }
+.flip__btn { position: absolute !important; left: 24px; right: 24px; bottom: 24px; z-index: 5; height: 60px; padding: 8px 8px 8px 24px; justify-content: space-between; transform: translateZ(0); }
+.flip-hint { text-align: center; font-size: 13px; color: var(--sub); margin-top: 22px; }
+/* отрыв от подложки + переворот */
+@media (hover: hover) {
+  .flip:hover .flip__inner, .flip:focus-visible .flip__inner { transform: rotateY(180deg); translate: 0 -14px; }
+  .flip:hover .flip__face, .flip:focus-visible .flip__face { box-shadow: 0 40px 70px -24px rgba(90,21,34,.45), 0 12px 24px -12px rgba(33,33,41,.25); }
+}
+.flip.is-flipped .flip__inner { transform: rotateY(180deg); translate: 0 -10px; }
+.flip.is-flipped .flip__face { box-shadow: 0 40px 70px -24px rgba(90,21,34,.45); }
+.flip:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 20px; }
+@media (max-width: 600px) {
+  .flip { height: 520px; } .ft { font-size: 52px !important; } .ft--a { top: 250px; } .ft--b { top: 180px; }
+  .flip__back p { font-size: 20px; } .flip__btn { font-size: 13px; padding-left: 18px; white-space: normal; text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip__inner { transition: none !important; } .flip:hover .flip__inner { translate: none; }
+}
