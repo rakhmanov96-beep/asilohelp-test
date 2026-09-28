@@ -453,3 +453,17 @@ body { background: #fff; }
 .fc--a .flip__face > img { width: 117.8%; height: 117.8%; left: 0; top: -17.8%; }
 .fc--b .flip__face > img { width: 131.9%; height: 132%; left: -18.5%; top: -.7%; }
 .fc--c .flip__face > img { width: 176.2%; height: 175.8%; left: -62.5%; top: -18.8%; }
+/* оборот карточки: белая полупрозрачная вуаль, бордовый текст */
+.flip__back::after { background: rgba(255,255,255,.72); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+.flip__back p { color: #A02538; font-weight: 400; }
+.flip__back b { color: #5A1522; font-weight: 600; }
+/* Safari: лицевая надпись просвечивала зеркально — прячем лицевую сторону на середине поворота */
+.flip__face, .flip__face * { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.flip__front { transition: visibility 0s .4s; }
+.flip__back { visibility: hidden; transition: visibility 0s .4s; }
+@media (hover: hover) {
+  .flip:hover .flip__front, .flip:focus-visible .flip__front { visibility: hidden; }
+  .flip:hover .flip__back, .flip:focus-visible .flip__back { visibility: visible; }
+}
+.flip.is-flipped .flip__front { visibility: hidden; } .flip.is-flipped .flip__back { visibility: visible; }
+@media (prefers-reduced-motion: reduce) { .flip__front, .flip__back { transition: none; } }
