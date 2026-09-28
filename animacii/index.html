@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Карта анимаций · asilohelp</title>
+<link rel="icon" href="../img/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motion.css">
+<script>document.documentElement.classList.add('m-js')</script>
+<style>
+  :root { --ink:#25262A; --ink2:#555968; --mute:#777880; --body:#66666B; --tile:#F5F5F7; --line:#ECECF0; --accent:#A02538; --dark:#24262C; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: Unbounded, system-ui, sans-serif; color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: inherit; }
+  .wrap { max-width: 1326px; margin: 0 auto; padding: 0 16px; }
+
+  .m-header { position: fixed; top: 16px; left: 16px; right: 16px; z-index: 10; }
+  .hdr { max-width: 1360px; margin: 0 auto; height: 68px; background: #fff; border-radius: 100px; display: flex; align-items: center; justify-content: space-between; padding: 0 10px 0 28px;
+         box-shadow: 0 10px 30px -6px rgba(34,34,38,.10), 0 2px 6px rgba(34,34,38,.06); }
+  .hdr b { font-weight: 600; font-size: 18px; letter-spacing: -.02em; } .hdr b span { color: var(--accent); }
+  .hdr small { font-size: 13px; color: var(--mute); }
+
+  .btn { display: inline-flex; align-items: center; gap: 14px; height: 56px; padding: 0 8px 0 26px; border-radius: 100px; border: 0; font: 500 15px Unbounded, sans-serif; cursor: pointer; text-decoration: none; }
+  .btn--accent { background: var(--accent); color: #fff; box-shadow: 0 12px 32px -8px rgba(160,37,56,.45); }
+  .btn--light { background: #fff; color: var(--ink); box-shadow: 0 12px 32px -8px rgba(0,0,0,.25); }
+  .btn .dot { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; }
+  .btn--accent .dot { background: #fff; color: var(--accent); } .btn--light .dot { background: var(--ink); color: #fff; }
+  .btn svg { width: 14px; height: 14px; }
+
+  .intro { padding: 150px 0 40px; text-align: center; }
+  h1 { font-weight: 500; font-size: clamp(30px, 5vw, 52px); letter-spacing: -.04em; line-height: 1.08; }
+  h1 em { font-style: normal; font-weight: 300; color: var(--ink2); display: block; }
+  .lead { max-width: 740px; margin: 22px auto 0; font-size: 16px; line-height: 1.6; color: var(--mute); }
+  .legend { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+  .tag { font-size: 12px; padding: 7px 12px; border-radius: 100px; background: var(--tile); color: var(--ink); white-space: nowrap; }
+  .tag--t { background: #FFF1E8; } .tag--o { background: #F7E9EB; } .tag--m { background: #EDEFF7; } .tag--n { background: #EEF6EE; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr)); gap: 16px; padding: 30px 0 60px; }
+  .item { background: var(--tile); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 16px; }
+  .item:nth-child(4n+1) { border-top-left-radius: 56px; } .item:nth-child(4n+2) { border-top-right-radius: 56px; }
+  .item:nth-child(4n+3) { border-bottom-left-radius: 56px; } .item:nth-child(4n) { border-bottom-right-radius: 56px; }
+  .item h2 { font-size: 20px; font-weight: 600; letter-spacing: -.03em; display: flex; gap: 10px; align-items: baseline; }
+  .item h2 i { font-style: normal; color: var(--accent); font-size: 14px; }
+  .stage { background: #fff; border-radius: 14px; min-height: 210px; display: grid; place-items: center; padding: 24px; position: relative; overflow: hidden; }
+  dl { display: grid; grid-template-columns: 96px 1fr; gap: 8px 12px; font-size: 13px; line-height: 1.55; }
+  dt { color: var(--mute); } dd { color: var(--body); }
+  .note { font-size: 12px; line-height: 1.55; color: var(--mute); }
+  .src { display: flex; gap: 6px; flex-wrap: wrap; }
+  .hint { font-size: 12px; color: var(--mute); position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; }
+
+  .card { width: 220px; background: #fff; border-radius: 16px; border: 1px solid var(--line); overflow: hidden; }
+  .card .m-photo { height: 120px; } .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card p { font-size: 13px; font-weight: 500; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .ph { width: 240px; height: 170px; border-radius: 16px; } .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .rv-row { display: flex; gap: 10px; width: 100%; }
+  .rv { flex: 1; height: 150px; border-radius: 12px; background: #ddd center/cover; }
+  .rv .tile { position: absolute; left: 10px; right: 10px; bottom: 10px; display: grid; gap: 6px; }
+  .m-review__tag { justify-self: start; font-size: 10px; padding: 5px 9px; border-radius: 4px; background: #fff; color: var(--ink); }
+  .m-review__text { color: #fff; font-size: 10.5px; line-height: 1.45; }
+
+  .float-wrap { position: relative; width: 100%; height: 190px; }
+  .scr { position: absolute; background: #fff; border-radius: 14px; padding: 12px 14px; font-size: 11px; line-height: 1.45; box-shadow: 0 12px 30px -10px rgba(34,34,34,.35); color: var(--ink); }
+  .scr b { display: block; font-weight: 500; margin-bottom: 4px; }
+
+  .faq { width: 100%; display: grid; gap: 8px; }
+  .m-faq { background: var(--tile); border-radius: 14px; }
+  .m-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; font-size: 13px; font-weight: 500; }
+  .m-faq summary::-webkit-details-marker { display: none; }
+  .m-plus { width: 22px; height: 22px; } .m-faq p { font-size: 12.5px; line-height: 1.55; color: var(--body); padding: 0 16px 14px; }
+
+  .rev-demo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; }
+  .rev-demo div { height: 70px; border-radius: 10px; background: var(--tile); }
+  .replay { position: absolute; top: 10px; right: 10px; font: 500 12px Unbounded, sans-serif; background: var(--ink); color: #fff; border: 0; border-radius: 100px; padding: 8px 12px; cursor: pointer; }
+  .nums { display: flex; gap: 34px; text-align: center; } .nums b { display: block; font-size: 30px; font-weight: 500; letter-spacing: -.03em; } .nums span { font-size: 11px; color: var(--mute); }
+  .live { display: flex; align-items: center; gap: 10px; font-size: 13px; background: var(--tile); padding: 12px 16px; border-radius: 100px; }
+  .live i { width: 10px; height: 10px; border-radius: 50%; background: #2FA35B; display: block; }
+
+  .rules { background: var(--dark); color: #F2F3F7; border-radius: 16px 68px 16px 16px; padding: 36px; margin-bottom: 40px; }
+  .rules h2 { font-size: 26px; font-weight: 600; letter-spacing: -.03em; margin-bottom: 18px; }
+  .rules ul { padding-left: 18px; display: grid; gap: 10px; font-size: 14px; line-height: 1.6; color: #C3C5CE; }
+  footer { font-size: 12px; color: var(--mute); padding: 0 0 40px; text-align: center; }
+  @media (max-width: 520px) { .hdr small { display: none; } .rules { padding: 24px; } dl { grid-template-columns: 1fr; gap: 2px; } dt { margin-top: 6px; } }
+</style>
+</head>
+<body>
+<div class="m-header"><div class="hdr"><b>asilo<span>help</span></b><small>Карта анимаций · 26.09.2026</small>
+  <a class="btn btn--accent m-btn m-btn--accent" href="#rules">Правила<span class="dot"><svg class="m-arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 12 2M5 2h7v7"/></svg></span></a></div></div>
+
+<main class="wrap">
+  <section class="intro" data-reveal>
+    <h1>Карта анимаций<em>как сайт будет двигаться</em></h1>
+    <p class="lead">Собрано из кода tutorium.io и наведений старого сайта (Figma → «Старый сайт» → «Компоненты анимаций»). Каждую анимацию можно потрогать: наведите мышку, нажмите или прокрутите. Шапка этой страницы — тоже пример: прокрутите вниз, и она спрячется. Анимации берутся из тех же файлов, что и сайт, поэтому здесь всегда актуальная версия.</p>
+    <div class="legend"><span class="tag tag--t">tutorium</span><span class="tag tag--o">старый сайт</span><span class="tag tag--m">вместе</span><span class="tag tag--n">новое, по желанию</span></div>
+  </section>
+
+  <section class="grid" data-reveal-group="0.06">
+
+    <article class="item" data-reveal>
+      <h2><i>01</i>Кнопка</h2>
+      <div class="stage"><a class="btn btn--accent m-btn m-btn--accent" href="#" onclick="return false">Оценить шансы<span class="dot"><svg class="m-arrow" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 12 2M5 2h7v7"/></svg></span></a><span class="hint">наведите и нажмите</span></div>
+      <dl><dt>Где</dt><dd>Все кнопки: «Оценить шансы», «Записаться на консультацию», «Помочь с кейсом», форма</dd>
+      <dt>Как</dt><dd>Подъём на 2 px и потемнение до #832626 за 0,3–0,45 с; при нажатии сжатие до 98,5 % за 0,12 с. Стрелка уходит вверх-вправо на 3 px</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--m">вместе</span></dd></dl>
+      <p class="note">Старый сайт: увеличение на 1 % + потемнение, 0,3 с. tutorium: подъём, нажатие, стрелка по диагонали. Увеличение заменено подъёмом — текст не «плывёт».</p>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>02</i>Карточка услуги</h2>
+      <div class="stage"><div class="card m-card"><div class="m-photo"><img src="../img/help-case.jpg" alt=""></div><p>Консультации<svg class="m-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 12 2M5 2h7v7"/></svg></p></div><span class="hint">наведите</span></div>
+      <dl><dt>Где</dt><dd>«Как мы помогаем», темы базы знаний, статьи, плитки бенто</dd>
+      <dt>Как</dt><dd>Карточка поднимается на 3 px, тень растёт, фото внутри приближается на 3,5 %, стрелка уходит по диагонали. 0,45–0,6 с</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--m">вместе</span></dd></dl>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>03</i>Фото</h2>
+      <div class="stage"><div class="ph m-photo"><img src="../img/rv-gothic.jpg" alt=""></div><span class="hint">наведите</span></div>
+      <dl><dt>Где</dt><dd>Фото команды, «Кто мы», истории, «Жизнь после переезда»</dd>
+      <dt>Как</dt><dd>Рамка стоит, изображение внутри приближается на 3,5 % за 0,6 с</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--m">вместе</span></dd></dl>
+      <p class="note">Старый сайт: фото целиком увеличивалось на 1 %. tutorium: приближение внутри рамки — аккуратнее, соседние блоки не толкаются.</p>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>04</i>Появление блоков</h2>
+      <div class="stage"><div class="rev-demo" id="revDemo" data-reveal-group="0.08"><div data-reveal></div><div data-reveal></div><div data-reveal></div><div data-reveal></div><div data-reveal></div><div data-reveal></div></div><button class="replay" onclick="replay()">Повторить</button></div>
+      <dl><dt>Где</dt><dd>Заголовки секций, карточки, плитки — всё, что ниже первого экрана</dd>
+      <dt>Как</dt><dd>Прозрачность 0 → 1 и подъём на 18 px за 0,8 с, один раз. Карточки в ряду — лесенкой через 0,08 с</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--t">tutorium</span></dd></dl>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>05</i>Парящие экраны</h2>
+      <div class="stage"><div class="float-wrap">
+        <div class="scr m-float" style="left:4%;top:18px;width:170px;--rot:-6deg;--dur:7s;--lift:-10px"><b>ASILOhelperBot</b>Заявка принята. Свяжемся с понедельника по пятницу.</div>
+        <div class="scr m-float" style="right:4%;top:40px;width:150px;--rot:5deg;--dur:9s;--delay:-2s;--lift:-12px"><b>Ваш кейс</b>Интервью с журналистом<br>Доказательства</div>
+        <div class="scr m-float" style="left:34%;bottom:6px;width:160px;--rot:-2deg;--dur:11s;--delay:-4s;--lift:-7px"><b>ЛГБТ-беженство | Испания</b>Новости о защите в Испании</div>
+      </div></div>
+      <dl><dt>Где</dt><dd>Только первый экран главной: бот, «Ваш кейс», канал, полароид Саши</dd>
+      <dt>Как</dt><dd>Вверх на 7–13 px и поворот на 1–3°, туда-обратно, 5–11 с, у каждой карточки свой ритм</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--m">вместе</span></dd></dl>
+      <p class="note">Наш DESIGN.md + приём float/drift из tutorium (у них 5–20 px). Взяли спокойнее, чтобы не укачивало.</p>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>06</i>Наклейки и плашки</h2>
+      <div class="stage"><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center" id="popDemo">
+        <span class="tag m-pop" style="--reveal-delay:.1s;background:var(--accent);color:#fff">Начните здесь</span>
+        <span class="tag m-pop" style="--reveal-delay:.25s;background:#fff;box-shadow:0 2px 4px rgba(23,23,23,.13)">Консультация</span>
+        <span class="tag m-pop" style="--reveal-delay:.4s">Работа с кейсом</span></div><button class="replay" onclick="rePop()">Повторить</button></div>
+      <dl><dt>Где</dt><dd>«Начните здесь», наклейки на фото, пузыри чата, бейджи «бесплатно»</dd>
+      <dt>Как</dt><dd>Лёгкий «хлоп»: из 96 % и −4 px в норму за 0,4 с</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--t">tutorium</span></dd></dl>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>07</i>Шапка-таблетка</h2>
+      <div class="stage"><div style="text-align:center;font-size:13px;line-height:1.6;color:var(--body);max-width:300px">Посмотрите на шапку этой страницы: прокрутите вниз — она уедет вверх, чуть прокрутите вверх — вернётся.</div></div>
+      <dl><dt>Где</dt><dd>Шапка на всех страницах (компонент «Шапка сайта v2»)</dd>
+      <dt>Как</dt><dd>Прячется при прокрутке вниз после 120 px, возвращается при прокрутке вверх. 0,4 с</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--t">tutorium</span></dd></dl>
+      <p class="note">У tutorium шапка полупрозрачная с размытием — это и есть «жидкое стекло». Пока белая, стекло — отдельной пробой.</p>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>08</i>Отзыв при наведении</h2>
+      <div class="stage"><div class="rv-row">
+        <div class="rv m-review" style="background-image:url(../img/rv-friends.jpg)"><div class="m-review__shade"></div><div class="tile"><p class="m-review__text">«Саша нас успокоил, поддержал и ответил на все-все вопросы»</p><span class="m-review__tag">Консультация</span></div></div>
+        <div class="rv m-review" style="background-image:url(../img/help-sopr.jpg)"><div class="m-review__shade"></div><div class="tile"><p class="m-review__text">«Команда помогла собрать документы и доказательства»</p><span class="m-review__tag">Работа с кейсом</span></div></div>
+      </div><span class="hint" style="color:#fff">наведите · на телефоне — нажмите</span></div>
+      <dl><dt>Где</dt><dd>Карусель отзывов на главной и страницах услуг</dd>
+      <dt>Как</dt><dd>Фото темнеет снизу, отзыв выплывает на 10 px, плашка услуги становится бордовой. 0,3–0,45 с</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--m">вместе</span></dd></dl>
+      <p class="note">Наш макет карусели в Figma + мягкая кривая tutorium. Фото здесь — для примера.</p>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>09</i>Вопросы</h2>
+      <div class="stage"><div class="faq">
+        <details class="m-faq"><summary>Общение с вами безопасно?<svg class="m-plus" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 5v12M5 11h12"/></svg></summary><div class="m-faq__body"><div><p>Мы не передаём информацию третьим лицам. Общение с нами не нарушает законы России.</p></div></div></details>
+        <details class="m-faq"><summary>С чего начать?<svg class="m-plus" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 5v12M5 11h12"/></svg></summary><div class="m-faq__body"><div><p>С оценки шансов: разберём вашу ситуацию и честно скажем, подходит ли вам защита.</p></div></div></details>
+      </div></div>
+      <dl><dt>Где</dt><dd>Блок «Вопросы» и страница «Частые вопросы»</dd>
+      <dt>Как</dt><dd>Плюс поворачивается в крестик, ответ плавно раскрывается по высоте. 0,3–0,45 с</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--m">вместе</span></dd></dl>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>10</i>Счётчик цифр</h2>
+      <div class="stage"><div class="nums" id="nums"><div><b data-count="187">187</b><span>эмигрировали</span></div><div><b data-count="342">342</b><span>консультации</span></div><div><b data-count="813">813</b><span>в сообществе</span></div></div><button class="replay" onclick="reCount()">Повторить</button></div>
+      <dl><dt>Где</dt><dd>Цифры на первом экране и в «Кто мы»</dd>
+      <dt>Как</dt><dd>Число быстро досчитывает от 0 за 1,2 с, когда блок появляется на экране. Один раз</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--n">новое, по желанию</span></dd></dl>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>11</i>«На связи»</h2>
+      <div class="stage"><div class="live"><i class="m-live"></i>Леся отвечает пн–пт</div></div>
+      <dl><dt>Где</dt><dd>Блок формы: кто ответит на заявку</dd>
+      <dt>Как</dt><dd>Зелёная точка мягко «дышит», 2,4 с</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--t">tutorium</span></dd></dl>
+    </article>
+
+    <article class="item" data-reveal>
+      <h2><i>12</i>Переходы</h2>
+      <div class="stage"><div style="text-align:center;font-size:13px;line-height:1.6;color:var(--body);max-width:300px">Нажмите «Правила» в шапке — страница плавно прокрутится. Переход на другую страницу сайта — мягкое растворение.</div></div>
+      <dl><dt>Где</dt><dd>Меню, ссылки внутри страницы, переходы между страницами</dd>
+      <dt>Как</dt><dd>Плавная прокрутка к блоку; между страницами — растворение 0,3 с</dd>
+      <dt>Откуда</dt><dd class="src"><span class="tag tag--o">старый сайт</span></dd></dl>
+    </article>
+  </section>
+
+  <section class="rules" id="rules" data-reveal>
+    <h2>Правила, чтобы правки ничего не ломали</h2>
+    <ul>
+      <li>Анимации привязаны к типам элементов (кнопка, карточка, фото), а не к координатам. Меняйте текст, фото и порядок блоков — всё продолжит работать.</li>
+      <li>Один характерный приём на сайт — парящие экраны первого экрана. Остальное тихое: появление, наведение, нажатие.</li>
+      <li>Всё уже видно без анимации: если скрипт не загрузился, контент не пропадёт.</li>
+      <li>Если в системе включено «Уменьшить движение», сайт статичный.</li>
+      <li>Файлы: <code>motion.css</code> и <code>motion.js</code> в репозитории asilohelp-test на GitHub — одна копия на всё: сайт и эта карта.</li>
+    </ul>
+  </section>
+  <footer>asilohelp · карта анимаций · страница скрыта от поисковиков</footer>
+</main>
+<script src="../motion.js"></script>
+<script>
+  function replay(){ const els=[...document.querySelectorAll('#revDemo [data-reveal]')]; els.forEach(e=>e.classList.remove('is-shown')); requestAnimationFrame(()=>requestAnimationFrame(()=>els.forEach(e=>e.classList.add('is-shown')))); }
+  function rePop(){ document.querySelectorAll('#popDemo .m-pop').forEach(e=>{ e.style.animation='none'; void e.offsetWidth; e.style.animation=''; }); }
+  function reCount(){ const box=document.getElementById('nums'); box.querySelectorAll('[data-count]').forEach(el=>{ const to=+el.dataset.count, t0=performance.now(); const tick=t=>{ const p=Math.min(1,(t-t0)/1200); el.textContent=Math.round(to*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(tick); }; requestAnimationFrame(tick); }); }
+</script>
+</body>
+</html>
