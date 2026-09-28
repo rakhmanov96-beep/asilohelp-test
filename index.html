@@ -10,9 +10,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Unbounded:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="motion.css?v=4">
-<link rel="stylesheet" href="site.css?v=4">
-<script>document.documentElement.classList.add('m-js');if(location.search.indexOf('shot')>-1)document.documentElement.classList.add('shot')</script>
+<link rel="stylesheet" href="motion.css?v=6">
+<link rel="stylesheet" href="site.css?v=6">
+<script>(function(){var r=document.documentElement;function z(){var w=window.innerWidth;r.style.zoom=(w>=1100&&w!==1440)?Math.min(w/1440,1.6):'';}z();addEventListener('resize',z);})();document.documentElement.classList.add('m-js');if(location.search.indexOf('shot')>-1)document.documentElement.classList.add('shot')</script>
 <style>.shot *,.shot *::before{transition:none!important;animation:none!important} @media (max-width:700px){.br-d{display:none}} .scr, .fl { transform: rotate(var(--rot, 0deg)); } @media (max-width: 1100px) { .fl--inside { animation: none; } }</style>
 </head>
 <body>
@@ -36,7 +36,7 @@
 <main id="top">
 
 <!-- 1 · Первый экран -->
-<section class="hero">
+<section class="hero"><div class="hero__stage">
   <div class="hero__center">
     <h1>
       <span>Поможем ЛГБТ‑людям</span>
@@ -77,7 +77,7 @@
     <p>Новости о защите в Испании: правила, сроки, законы.</p>
   </div>
   <span class="hero__note hand" aria-hidden="true">это про тебя ↓</span>
-</section>
+</div></section>
 
 <!-- 2 · Как мы помогаем -->
 <section class="help" id="help">

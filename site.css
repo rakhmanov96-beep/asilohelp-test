@@ -48,6 +48,7 @@ section { position: relative; }
 
 /* 1 · первый экран */
 .hero { height: 900px; overflow: hidden; }
+.hero__stage { position: relative; height: 100%; width: min(1440px, 100%); margin-inline: auto; }
 .hero__center { position: absolute; left: 50%; top: 232px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 28px; width: 760px; text-align: center; }
 .hero h1 { font-weight: 500; font-size: 50px; line-height: 1.08; letter-spacing: -.03em; color: var(--ink-2); display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .hero__row { display: flex; align-items: center; gap: 16px; }
@@ -187,7 +188,7 @@ section { position: relative; }
 .reviews { padding: 104px 0 70px; overflow: hidden; }
 .reviews__nav { display: flex; justify-content: flex-end; gap: 12px; margin-top: 30px; }
 .reviews__nav button { width: 52px; height: 52px; border: 0; background: none; cursor: pointer; padding: 0; }
-.reel { display: flex; gap: 17.5px; margin-top: 36px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-left: max(16px, calc((100vw - 1440px) / 2 - 40px)); }
+.reel { display: flex; gap: 17.5px; margin-top: 36px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-left: max(16px, calc((100% - 1326px) / 2)); }
 .reel::-webkit-scrollbar { display: none; }
 .rv { position: relative; flex: none; width: 257px; height: 338px; scroll-snap-align: start; }
 .rv > img { width: 100%; height: 100%; object-fit: cover; }
@@ -326,20 +327,11 @@ section { position: relative; }
 
 .test-banner { position: fixed; left: 16px; bottom: 16px; z-index: 60; background: var(--ink); color: #fff; font-size: 11px; padding: 8px 12px; border-radius: 100px; opacity: .85; }
 
-/* ── ниже 1440: всё ужимается ── */
-@media (max-width: 1439px) {
-  .scr--polaroid { left: auto; right: 48px; } .scr--channel { left: auto; right: 45px; } .hero__note { left: auto; right: 250px; }
-  .kb__box { overflow: hidden; }
-}
-@media (max-width: 1280px) {
-  .scr--bot, .scr--case { left: 16px; } .scr--polaroid, .scr--channel { right: 16px; }
-  .hdr nav { gap: 22px; }
-  .kb__box { padding: 70px 40px; } .fl--screens { left: auto; right: -40px; } .fl--inside { left: auto; right: 20px; } .fl--timeline { left: auto; right: 160px; }
-}
+/* от 1100 до 1440 и шире 1440 страница масштабируется целиком (zoom в index.html) */
 /* ── планшет и телефон ── */
 @media (max-width: 1100px) {
   .m-header { padding-inline: 12px; } .hdr nav { display: none; } .hdr { padding-left: 20px; }
-  .hero { height: auto; padding: 150px 0 60px; }
+  .hero { height: auto; padding: 150px 0 60px; } .hero__stage { height: auto; }
   .hero__center { position: static; transform: none; width: auto; padding: 0 16px; }
   .hero .scr, .hero__note { display: none; }
   .help__grid, .tiles3, .bento, .bento3, .free__grid, .news__grid, .faq__grid { grid-template-columns: 1fr; }
