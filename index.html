@@ -10,23 +10,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Unbounded:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="motion.css?v=15">
-<link rel="stylesheet" href="site.css?v=15">
+<link rel="stylesheet" href="motion.css?v=16">
+<link rel="stylesheet" href="site.css?v=16">
 <script>(function(){var r=document.documentElement;function z(){var w=window.innerWidth;r.style.setProperty('--z',(w>=1100&&w!==1440)?Math.min(w/1440,1.6):1);}z();addEventListener('resize',z);})();document.documentElement.classList.add('m-js');if(location.search.indexOf('shot')>-1)document.documentElement.classList.add('shot')</script>
 <style>.shot *,.shot *::before{transition:none!important;animation:none!important} @media (max-width:700px){.br-d{display:none}} .scr, .fl { transform: rotate(var(--rot, 0deg)); } @media (max-width: 1100px) { .fl--inside { animation: none; } }</style>
 </head>
 <body>
 
-<!-- жидкое стекло: преломление краёв шапки (работает в Chrome/Edge; в Safari и Firefox — матовое стекло) -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <filter id="lg-refract" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-    <feImage preserveAspectRatio="none" result="mx" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' preserveAspectRatio='none'%3E%3ClinearGradient id='g'%3E%3Cstop offset='0' stop-color='%23ff8000'/%3E%3Cstop offset='.06' stop-color='%23808000'/%3E%3Cstop offset='.94' stop-color='%23808000'/%3E%3Cstop offset='1' stop-color='%23008000'/%3E%3C/linearGradient%3E%3Crect width='100' height='100' fill='url(%23g)'/%3E%3C/svg%3E"/>
-    <feImage preserveAspectRatio="none" result="my" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' preserveAspectRatio='none'%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%2300ff00'/%3E%3Cstop offset='.3' stop-color='%23008000'/%3E%3Cstop offset='.7' stop-color='%23008000'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3Crect width='100' height='100' fill='url(%23g)'/%3E%3C/svg%3E"/>
-    <feDisplacementMap in="SourceGraphic" in2="mx" scale="28" xChannelSelector="R" yChannelSelector="G" result="d1"/>
-    <feDisplacementMap in="d1" in2="my" scale="22" xChannelSelector="B" yChannelSelector="G" result="d2"/>
-    <feGaussianBlur in="d2" stdDeviation="3"/>
-  </filter>
-</svg>
 <header class="m-header m-header--stay">
   <div class="hdr">
     <a class="hdr__logo" href="#top" aria-label="asilohelp — на главную"><img src="img/logo.svg" alt="asilohelp" width="197" height="32"></a>
@@ -379,25 +369,6 @@
 
 <div class="test-banner">Тестовая версия · не индексируется</div>
 
-<script src="vendor/liquidGL.js"></script>
-<script>
-  // жидкое стекло для шапки — liquidGL (MIT, github.com/naughtyduk/liquidGL)
-  (function(){
-    if (matchMedia('(prefers-reduced-transparency: reduce)').matches || typeof liquidGL !== 'function') return;
-    var r = document.documentElement;
-    r.classList.add('lg-snap');           // на время снимка страницы показываем все блоки
-    try {
-      liquidGL({
-        target: '.hdr', snapshot: 'body', resolution: 2,
-        refraction: 0.012, aberration: 0, bevelDepth: 0.14, bevelWidth: 0.2,
-        frost: 0, shadow: true, specular: true, reveal: 'fade',
-        tint: 'rgba(255,255,255,0.62)',
-        on: { init: function(){ r.classList.remove('lg-snap'); r.classList.add('lg-on'); } }
-      });
-    } catch (e) { r.classList.remove('lg-snap'); }
-    setTimeout(function(){ r.classList.remove('lg-snap'); }, 4000);
-  })();
-</script>
 <script src="motion.js"></script>
 <script>
   // отзывы: листание
@@ -409,8 +380,6 @@
     g.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === t));
     if (g.classList.contains('seg')) g.parentElement.querySelector('input').placeholder = t.textContent === 'E-mail' ? 'name@mail.com' : '@username';
   }));
-  // жидкое стекло: преломление включаем только там, где браузер его умеет (Chromium)
-  if (/Chrome|Edg/.test(navigator.userAgent) && !/Firefox/.test(navigator.userAgent)) document.documentElement.classList.add('lg-refract');
   // карточки услуг: переворот по нажатию (телефон) и с клавиатуры
   document.querySelectorAll('.flip').forEach(f => { f.addEventListener('click', e => { if (e.target.closest('.flip__btn')) return; if (!matchMedia('(hover: hover)').matches) f.classList.toggle('is-flipped'); }); f.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); f.classList.toggle('is-flipped'); } }); });
   if (!matchMedia('(hover: hover)').matches) document.querySelector('.flip-hint').textContent = 'Нажмите на карточку — узнаете, что входит';
