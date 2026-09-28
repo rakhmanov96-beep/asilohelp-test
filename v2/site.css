@@ -467,3 +467,8 @@ body { background: #fff; }
 }
 .flip.is-flipped .flip__front { visibility: hidden; } .flip.is-flipped .flip__back { visibility: visible; }
 @media (prefers-reduced-motion: reduce) { .flip__front, .flip__back { transition: none; } }
+/* переворот: симметричная кривая — ребро (90°) ровно на середине, 0,4 с. Стороны меняются точно в этот момент в обе стороны */
+.flip__inner { transition: transform .8s cubic-bezier(.65,0,.35,1), translate .45s var(--m-ease, ease); }
+.flip__front { transform: rotateY(0deg) translateZ(1px); }
+.flip__back { transform: rotateY(180deg) translateZ(1px); }
+.flip__front, .flip__back { transition: visibility 0s linear .4s; }
