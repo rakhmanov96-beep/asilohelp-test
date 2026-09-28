@@ -475,3 +475,33 @@ body { background: #fff; }
 /* переход по ссылкам меню: блок встаёт под шапкой, а не под неё (шапка 8 + 68 px + воздух) */
 main section[id] { scroll-margin-top: 96px; }
 @media (max-width: 1100px) { main section[id] { scroll-margin-top: 84px; } }
+
+/* ===== обновление по «мой прототип» (28.09): блок 6 «Бесплатно» на ярком бордовом, блок 7 «База знаний» ===== */
+.free { padding: 292px 0 310px; }
+.bg-free { position: absolute; left: 50%; transform: translateX(-50%); top: -232px; width: 1440px; height: 1957px; z-index: -1; pointer-events: none;
+  background: url(../img/v2-bg-free.jpg) center/100% 100% no-repeat; }
+.free .sh h2 { color: #fff; } .free .sh h2 span { color: #F3DDE1; opacity: .85; }
+.free .sh p { color: #fff; opacity: .85; }
+.free__grid { margin-top: 60px; }
+.ftile { color: var(--ink); }
+.ftile--main::after { background: linear-gradient(180deg, rgba(255,255,255,0) 20%, rgba(255,255,255,.62) 55%, rgba(255,255,255,.77)); }
+.ftile--main p { color: var(--ink); }
+.ftile--tr::after { background: linear-gradient(189deg, rgba(255,255,255,0) 57%, rgba(255,255,255,.17) 76%, rgba(255,255,255,.21) 98%); }
+.ftile--br::after { background: linear-gradient(235deg, rgba(255,255,255,.08) 34%, rgba(255,255,255,.42) 66%, rgba(255,255,255,0) 79%); }
+.ftile--side { padding-top: 60px; } .ftile--side p { color: var(--ink); max-width: 374px; }
+.btn--red-s { background: var(--accent); color: #fff; height: 48px; padding: 5px 5px 5px 24px; box-shadow: 0 12px 28px -10px rgba(160,37,56,.5); }
+.free__note { color: #fff; font-size: 60px; right: auto; left: calc(50% + 337px); bottom: auto; top: 1104px; }
+.free__arrow { position: absolute; left: calc(50% + 566px); top: 1150px; width: 102px; height: auto; transform: rotate(-105deg); pointer-events: none; }
+/* база знаний */
+.kb { padding-top: 60px; }
+.kb__box--v2 { min-height: 624px; padding: 90px 63px 60px; background: url(../img/v2-kb-bg.jpg) center/cover no-repeat; }
+.kb__box--v2 > .btn { height: 56px; font-size: 30px; padding-left: 24px; gap: 30px; }
+.kb__box--v2 .fl--screens { left: 749px; top: -43px; }
+.kb__box--v2 .fl--timeline { left: 652px; top: 340px; }
+.kb__box--v2 .fl--inside { left: 951px; top: 165px; }
+@media (max-width: 1100px) {
+  .free { padding: 120px 0 120px; } .bg-free { width: 100%; top: -120px; height: calc(100% + 240px); background-size: cover; }
+  .free__arrow { display: none; }
+  .kb__box--v2 { padding: 40px 24px 480px; } .kb__box--v2 > .btn { font-size: 18px; }
+  .kb__box--v2 .fl--timeline { left: 12px; top: auto; } .kb__box--v2 .fl--inside { left: auto; top: auto; }
+}
