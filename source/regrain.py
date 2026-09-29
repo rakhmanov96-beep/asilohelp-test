@@ -34,11 +34,14 @@ for y in range(H):
     r=rows[y]; o=bytearray(W*3)
     for x in range(W):
         R,G,B=r[x*bpp],r[x*bpp+1],r[x*bpp+2]
-        a=(255-G)/(255-cg); a=0.0 if a<0 else (1.0 if a>1 else a)   # насколько пиксель «бордовый»
+        a=(255-G)/(255-cg); a=(a-0.09)/0.91   # насколько пиксель «бордовый»; почти белое считаем белым
+        a=0.0 if a<0 else (1.0 if a>1 else a)
         if a>0.004:
             # чистый цвет этого места (без примеси белого)
             pr=255-(255-R)/a; pg=255-(255-G)/a; pb=255-(255-B)/a
             pr=min(255,max(0,pr)); pg=min(255,max(0,pg)); pb=min(255,max(0,pb))
+            w=min(1.0,a*1.6)   # на краях берём фирменный цвет, а не вычисленный (иначе серые/бирюзовые точки)
+            pr=cr*(1-w)+pr*w; pg=cg*(1-w)+pg*w; pb=cb*(1-w)+pb*w
         else: pr,pg,pb=cr,cg,cb
         u=random.random()
         ae=a+(u-0.5)*(1.3*math.sqrt(a*(1-a))+0.16)
